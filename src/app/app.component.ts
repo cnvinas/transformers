@@ -126,12 +126,6 @@ export class AppComponent implements OnInit {
     return (transformer.strength + transformer.intelligence + transformer.speed + transformer.endurance + transformer.firepower)
   }
 
-  displayGroupInfo = (arr: []) => {
-    let team = arr;
-    let numberOfBattles, winningTeam, survivors;
-    return { numberOfBattles, winningTeam, survivors }
-  }
-
   sortByRank = (team) => {
     let sortTeam = team.length > 0 ? team : [];
 
@@ -169,18 +163,14 @@ export class AppComponent implements OnInit {
 
       if ((elem.courage - dc[index].courage >= 4)
         && (elem.strength - dc[index].strength >= 3)) {
-        dc[index]["result"] = "Loser";
-        elem["result"] = "Winner";
+        dc[index]["result"] = "Loser", elem["result"] = "Winner";
       } else if ((elem.skill - dc[index].skill >= 3)
         || (abOverAll > dcOverAll)) {
-        dc[index]["result"] = "Loser";
-        elem["result"] = "Winner";
+        dc[index]["result"] = "Loser", elem["result"] = "Winner";
       } else if (abOverAll === dcOverAll) {
-        ab[index]["result"] = "Draw";
-        elem["result"] = "Draw";
+        ab[index]["result"] = "Draw", elem["result"] = "Draw";
       } else if(elem.result === ""){
-        ab[index]["result"] = "Draw";
-        elem["result"] = "Draw";
+        ab[index]["result"] = "Draw", elem["result"] = "Draw";
       }
     });
   }
@@ -192,18 +182,14 @@ export class AppComponent implements OnInit {
 
       if ((elem.courage - ab[index].courage >= 4)
         && (elem.strength - ab[index].strength >= 3)) {
-        ab[index]["result"] = "Loser";
-        elem["result"] = "Winner";
+        ab[index]["result"] = "Loser", elem["result"] = "Winner";
       } else if ((elem.skill - ab[index].skill >= 3)
         || (abOverAll < dcOverAll)) {
-        ab[index]["result"] = "Loser";
-        elem["result"] = "Winner";
+        ab[index]["result"] = "Loser", elem["result"] = "Winner";
       } else if (abOverAll === dcOverAll) {
-        ab[index]["result"] = "Draw";
-        elem["result"] = "Draw";
+        ab[index]["result"] = "Draw",elem["result"] = "Draw";
       } else if(elem.result === ""){
-        ab[index]["result"] = "Draw";
-        elem["result"] = "Draw";
+        ab[index]["result"] = "Draw",elem["result"] = "Draw";
       }
     });
   }
@@ -226,21 +212,17 @@ export class AppComponent implements OnInit {
   predakingOrOptimus = (ab, dc) => {
     ab.forEach((elem, index) => {
       if (elem.name === "Optimus Prime" && dc[index].name !== "Predaking") {
-        dc[index]["result"] = "Loser";
-        elem["result"] = "Winner";
+        dc[index]["result"] = "Loser", elem["result"] = "Winner";
       } else if (elem.name === "Optimus Prime" && dc[index].name === "Predaking") {
-        dc[index]["result"] = "Draw";
-        elem["result"] = "Draw";
+        dc[index]["result"] = "Draw", elem["result"] = "Draw";
       }
     });
 
     dc.forEach((elem, index) => {
       if (elem.name === "Predaking" && ab[index].name !== "Optimus Prime") {
-        ab[index]["result"] = "Loser";
-        elem["result"] = "Winner";
+        ab[index]["result"] = "Loser", elem["result"] = "Winner";
       } else if (elem.name === "Predaking" && ab[index].name === "Optimus Prime") {
-        ab[index]["result"] = "Draw";
-        elem["result"] = "Draw";
+        ab[index]["result"] = "Draw", elem["result"] = "Draw";
       }
     });
   }
