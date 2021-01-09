@@ -122,6 +122,10 @@ export class AppComponent implements OnInit {
 
   finalResult = { battles: 0, winningTeam: "", winners: [], survivorTeam: "", survivors: []};
 
+  ngOnInit() {
+    this.startBattle();
+  }
+
   overAllRatings = (transformer) => {
     return (transformer.strength + transformer.intelligence + transformer.speed + transformer.endurance + transformer.firepower)
   }
@@ -138,25 +142,25 @@ export class AppComponent implements OnInit {
     }
   }
 
-  startBattle = () => {
+  startBattle(){
     this.teamAutobots = this.setPlayers(this.sortByRank(this.autobots));
     this.teamDecepticons = this.setPlayers(this.sortByRank(this.decepticons));
     this.startFighting(this.teamAutobots, this.teamDecepticons);
     this.battleResults(this.teamAutobots, this.teamDecepticons);
   }
 
-  startFighting = (ab, dc) => {
+  startFighting (ab, dc){
     this.setEqualNumberOfTeamPlayers(ab, dc);
     this.predakingOrOptimus(ab, dc);
     this.checkFigthersCourageStrengthAndSkill(ab, dc);
   }
 
-  checkFigthersCourageStrengthAndSkill = (ab, dc) => {
+  checkFigthersCourageStrengthAndSkill(ab, dc){
     this.checkAutobotTeam(ab, dc);
     this.checkDecepticonTeam(ab, dc);
   }
 
-  checkAutobotTeam = (ab, dc) => {
+  checkAutobotTeam(ab, dc){
     ab.forEach((elem, index) => {
       let abOverAll = this.overAllRatings(elem);
       let dcOverAll = this.overAllRatings(dc[index]);
@@ -175,7 +179,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  checkDecepticonTeam = (ab, dc) => {
+  checkDecepticonTeam(ab, dc){
     dc.forEach((elem, index) => {
       let abOverAll = this.overAllRatings(ab[index]);
       let dcOverAll = this.overAllRatings(elem);
@@ -270,7 +274,4 @@ export class AppComponent implements OnInit {
     return winners;
   }
 
-  ngOnInit() {
-    this.startBattle();
-  }
 }
